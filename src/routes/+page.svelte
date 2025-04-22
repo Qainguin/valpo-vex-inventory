@@ -85,9 +85,13 @@
 </script>
 
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
-	<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
-	<div class="xs:text-2xs mb-2 flex flex-col gap-1 border-y border-green-700 py-2 not-sm:text-xs">
-		<div class="flex flex-row gap-2">
+	<div class="mb-2 flex flex-row items-center gap-2 not-sm:flex-col">
+		<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
+		<Search bind:searchedParts {parts}></Search>
+	</div>
+
+	<div class="mb-2 flex flex-col gap-1 border-y border-green-700 py-2 not-sm:text-xs">
+		<div class="m-1 flex flex-col gap-2 not-sm:text-lg sm:flex-row">
 			{#each categories as category, c}
 				{#if filter.category === category}
 					<button
@@ -103,8 +107,6 @@
 			{/each}
 		</div>
 	</div>
-
-	<Search bind:searchedParts {parts}></Search>
 </nav>
 
 {#if query.isLoading}
