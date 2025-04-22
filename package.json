@@ -29,5 +29,9 @@
 		"format": "prettier --write .",
 		"lint": "prettier --check ."
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"convex": "^1.23.0",
+		"convex-svelte": "^0.0.11"
+	}
 }

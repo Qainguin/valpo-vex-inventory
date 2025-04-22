@@ -65,8 +65,8 @@
 	<div
 		class="fixed top-0 left-0 z-5 grid h-screen w-screen place-items-center bg-zinc-900/40 text-white backdrop-blur-xs"
 	>
-		<div class="relative rounded-lg border border-zinc-800 bg-zinc-950 p-4">
-			<button class="absolute top-0 right-0 m-6 w-4 cursor-pointer" onclick={() => (part = null)}
+		<div class="relative min-w-48 rounded-lg border border-zinc-800 bg-zinc-950 p-4">
+			<button class="absolute top-0 right-0 m-4 w-4 cursor-pointer" onclick={() => (part = null)}
 				><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
 					><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path
 						fill="#ffffff"
@@ -78,10 +78,12 @@
 			<h1>{part.name}</h1>
 
 			<h2 class="text-zinc-400">
-				{capitalizeCamelCase(part.category)} - {part.locations[0].husky > -1 &&
-				part.locations[0].husky < 3
-					? 'Husky ' + part.locations[0].husky
-					: 'Cabinet ' + part.locations[0].cabinet}
+				{capitalizeCamelCase(part.category)}
+				{#if part.locations && part.locations[0]}
+					- {part.locations[0].husky > -1 && part.locations[0].husky < 3
+						? 'Husky ' + part.locations[0].husky
+						: 'Cabinet ' + part.locations[0].cabinet}
+				{/if}
 			</h2>
 			{#if part.lengths}
 				<h3 class="text-sm text-zinc-400">
@@ -96,7 +98,10 @@
 
 			{#if part.locations}
 				<div
-					class={part.locations[0].husky > -1 && part.locations[0].husky < 3
+					class={part.locations &&
+					part.locations[0] &&
+					part.locations[0].husky > -1 &&
+					part.locations[0].husky < 3
 						? 'relative'
 						: 'relative h-90'}
 				>
@@ -150,7 +155,9 @@
 			{#if part.links}
 				<div
 					class="mt-2 flex flex-row gap-x-1 gap-y-1"
-					style={!(part.locations[0].husky > -1 && part.locations[0].husky < 3)
+					style={part.locations &&
+					part.locations[0] &&
+					!(part.locations[0].husky > -1 && part.locations[0].husky < 3)
 						? 'flex-direction: column; width: fit-content;'
 						: ''}
 				>

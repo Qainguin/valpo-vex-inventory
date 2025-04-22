@@ -5,24 +5,34 @@
 	import Search from '$lib/components/Search.svelte';
 	import { onMount } from 'svelte';
 
-	let { data } = $props();
+	import { useQuery } from 'convex-svelte';
+	import { api } from '../convex/_generated/api.js';
+
+	const query = useQuery(api.parts.get, {});
 
 	const ICONS =
 		'https://raw.githubusercontent.com/BreadSoup/Protobot-Rebuilt/1c67dc53e3ab3edfcfb878349bbb048cf4cf168e/Assets/Sprites/Packet%20Icons/';
 
-	const PARTS = data.item;
+	const PARTS = query.data;
 
 	let filter: { category: string } = $state({ category: '' });
 
-	let parts: Part[] = $state(data.item);
+	let parts: Part[] | undefined = $state(query.data);
 
 	let searchedParts: any = $state([]);
 
-	let categories: Array<string> = $derived(getAllCategories(parts));
+	let categories: Array<string> = $state([
+		'motion',
+		'electronics',
+		'pneumatics',
+		'structure',
+		'toolsAndAccessories'
+	]);
 
-	let selectedPart: Part | null = $state(null);
+	let selectedPart: Part | null | undefined = $state(null);
 
-	function getAllCategories(partsToSearch: Array<Part>) {
+	function getAllCategories(partsToSearch: Array<Part> | undefined) {
+		if (!partsToSearch) return [];
 		const categories: Set<string> = new Set();
 		for (const part of partsToSearch) {
 			categories.add(part.category);
@@ -55,6 +65,7 @@
 	}
 
 	function findPart(name: string) {
+		if (!parts) return;
 		const part = parts.find((part) => part.name === name);
 		if (part) return part;
 		return null;
@@ -67,6 +78,10 @@
 		});
 		return fullLine;
 	}
+
+	$effect(() => {
+		parts = query.data;
+	});
 </script>
 
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
@@ -90,46 +105,52 @@
 	</div>
 </nav>
 
-<main class="bg-zinc-950 p-4 pt-0 text-green-400">
-	<div class="flex flex-col gap-2">
-		{#if searchedParts.length > 0}
-			{#each searchedParts as item}
-				{#each item as line}
-					{#if !filter.category || filter.category === findPart(combineText(line))?.category}
+{#if query.isLoading}
+	Loading...
+{:else if query.error}
+	failed to load: {query.error.toString()}
+{:else}
+	<main class="bg-zinc-950 p-4 pt-0 text-green-400">
+		<div class="flex flex-col gap-2">
+			{#if searchedParts.length > 0}
+				{#each searchedParts as item}
+					{#each item as line}
+						{#if !filter.category || filter.category === findPart(combineText(line))?.category}
+							<div class="flex flex-row gap-2">
+								{#if getPartImage(combineText(line))}
+									<img
+										class="aspect-square w-6"
+										width="24"
+										height="24"
+										src={getPartImage(combineText(line))}
+									/>
+								{/if}
+								<button
+									class="cursor-pointer hover:underline"
+									onclick={() => (selectedPart = findPart(combineText(line)))}
+									>{combineText(line)}</button
+								>
+							</div>
+						{/if}
+					{/each}
+				{/each}
+			{:else if parts}
+				{#each parts as part}
+					{#if !filter.category || part.category === filter.category}
 						<div class="flex flex-row gap-2">
-							{#if getPartImage(combineText(line))}
-								<img
-									class="aspect-square w-6"
-									width="24"
-									height="24"
-									src={getPartImage(combineText(line))}
-								/>
-							{/if}
-							<button
-								class="cursor-pointer hover:underline"
-								onclick={() => (selectedPart = findPart(combineText(line)))}
-								>{combineText(line)}</button
+							<img class="aspect-square w-6" height="24" width="24" src={getPartImage(part.name)} />
+							<button class="cursor-pointer hover:underline" onclick={() => (selectedPart = part)}
+								>{part.name}</button
 							>
 						</div>
 					{/if}
 				{/each}
-			{/each}
-		{:else}
-			{#each parts as part}
-				{#if !filter.category || part.category === filter.category}
-					<div class="flex flex-row gap-2">
-						<img class="aspect-square w-6" height="24" width="24" src={getPartImage(part.name)} />
-						<button class="cursor-pointer hover:underline" onclick={() => (selectedPart = part)}
-							>{part.name}</button
-						>
-					</div>
-				{/if}
-			{/each}
-		{/if}
-	</div>
-</main>
+			{/if}
+		</div>
+	</main>
 
-<PartModal bind:part={selectedPart}></PartModal>
+	<PartModal bind:part={selectedPart}></PartModal>
+{/if}
 
 <Search bind:searchedParts {parts}></Search>
 
