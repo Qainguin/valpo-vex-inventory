@@ -126,6 +126,7 @@
 											width="24"
 											height="24"
 											src={getPartImage(combineText(line))}
+											style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
 										/>
 									{/if}
 									<button

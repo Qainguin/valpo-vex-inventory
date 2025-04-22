@@ -16,35 +16,50 @@
 		return words.map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 	}
 
-	function getHuskyDrawerBounds(drawer: number) {
-		const drawerBounds: {
+	function getHuskyDrawerBounds(drawer: number, husky: number) {
+		let drawerBounds: {
 			[key: number]: { width: string; height: string; x: string; y: string };
-		} = {
-			0: { width: '105px', height: '13px', x: '0px', y: '0px' },
-			1: { width: '290px', height: '13px', x: '115px', y: '0px' },
-			2: { width: '105px', height: '13px', x: '415px', y: '0px' },
-			3: { width: '105px', height: '10px', x: '0px', y: '18px' },
-			4: { width: '290px', height: '10px', x: '115px', y: '18px' },
-			5: { width: '105px', height: '10px', x: '415px', y: '18px' },
-			6: { width: '105px', height: '10px', x: '0px', y: '33px' },
-			7: { width: '290px', height: '10px', x: '115px', y: '33px' },
-			8: { width: '105px', height: '10px', x: '415px', y: '33px' },
-			9: { width: '105px', height: '15px', x: '0px', y: '48px' },
-			10: { width: '290px', height: '40px', x: '115px', y: '48px' },
-			11: { width: '105px', height: '15px', x: '415px', y: '48px' },
-			12: { width: '105px', height: '20px', x: '0px', y: '68px' },
-			13: { width: '105px', height: '20px', x: '415px', y: '68px' },
-			14: { width: '105px', height: '20px', x: '0px', y: '93px' },
-			15: { width: '142.5px', height: '20px', x: '115px', y: '93px' },
-			16: { width: '142.5px', height: '20px', x: '262px', y: '93px' },
-			17: { width: '105px', height: '20px', x: '415px', y: '93px' },
-			18: { width: '105px', height: '42px', x: '0px', y: '118px' },
-			19: { width: '142.5px', height: '20px', x: '115px', y: '118px' },
-			20: { width: '142.5px', height: '20px', x: '262px', y: '118px' },
-			21: { width: '105px', height: '42px', x: '415px', y: '118px' },
-			22: { width: '142.5px', height: '18px', x: '115px', y: '143px' },
-			23: { width: '142.5px', height: '18px', x: '262px', y: '143px' }
-		};
+		} | null = null;
+		if (husky === 0) {
+			drawerBounds = {
+				0: { width: '105px', height: '13px', x: '0px', y: '0px' },
+				1: { width: '290px', height: '13px', x: '115px', y: '0px' },
+				2: { width: '105px', height: '13px', x: '415px', y: '0px' },
+				3: { width: '105px', height: '10px', x: '0px', y: '18px' },
+				4: { width: '290px', height: '10px', x: '115px', y: '18px' },
+				5: { width: '105px', height: '10px', x: '415px', y: '18px' },
+				6: { width: '105px', height: '10px', x: '0px', y: '33px' },
+				7: { width: '290px', height: '10px', x: '115px', y: '33px' },
+				8: { width: '105px', height: '10px', x: '415px', y: '33px' },
+				9: { width: '105px', height: '15px', x: '0px', y: '48px' },
+				10: { width: '290px', height: '40px', x: '115px', y: '48px' },
+				11: { width: '105px', height: '15px', x: '415px', y: '48px' },
+				12: { width: '105px', height: '20px', x: '0px', y: '68px' },
+				13: { width: '105px', height: '20px', x: '415px', y: '68px' },
+				14: { width: '105px', height: '20px', x: '0px', y: '93px' },
+				15: { width: '142.5px', height: '20px', x: '115px', y: '93px' },
+				16: { width: '142.5px', height: '20px', x: '262px', y: '93px' },
+				17: { width: '105px', height: '20px', x: '415px', y: '93px' },
+				18: { width: '105px', height: '42px', x: '0px', y: '118px' },
+				19: { width: '142.5px', height: '20px', x: '115px', y: '118px' },
+				20: { width: '142.5px', height: '20px', x: '262px', y: '118px' },
+				21: { width: '105px', height: '42px', x: '415px', y: '118px' },
+				22: { width: '142.5px', height: '18px', x: '115px', y: '143px' },
+				23: { width: '142.5px', height: '18px', x: '262px', y: '143px' }
+			};
+		} else {
+			drawerBounds = {
+				0: { width: '496px', height: '96px', x: '12px', y: '13px' },
+				1: { width: '322px', height: '22px', x: '12px', y: '120px' },
+				2: { width: '164px', height: '22px', x: '344px', y: '120px' },
+				3: { width: '322px', height: '22px', x: '12px', y: '154px' },
+				4: { width: '164px', height: '22px', x: '344px', y: '154px' },
+				5: { width: '322px', height: '22px', x: '12px', y: '188px' },
+				6: { width: '164px', height: '22px', x: '344px', y: '188px' },
+				7: { width: '322px', height: '108px', x: '12px', y: '221px' },
+				8: { width: '164px', height: '108px', x: '344px', y: '221px' }
+			};
+		}
 
 		const bounds = drawerBounds[drawer];
 
@@ -109,19 +124,30 @@
 						{#if !location.cabinet && location.husky > -1}
 							<div
 								class="pulse absolute top-[9.5px] left-[10px] z-1 h-[13px] w-[105px] bg-green-400 opacity-50"
-								style="width: {getHuskyDrawerBounds(location.drawer)
-									?.width}; height: {getHuskyDrawerBounds(location.drawer)
-									?.height};  transform: translate({getHuskyDrawerBounds(location.drawer)
-									?.x}, {getHuskyDrawerBounds(location.drawer)?.y});"
+								style="width: {getHuskyDrawerBounds(location.drawer, location.husky)
+									?.width}; height: {getHuskyDrawerBounds(location.drawer, location.husky)
+									?.height};  transform: translate({getHuskyDrawerBounds(
+									location.drawer,
+									location.husky
+								)?.x}, {getHuskyDrawerBounds(location.drawer, location.husky)?.y});"
 							></div>
 
 							{#if l === 0}
-								<img
-									width="540"
-									src="/big-husky.svg"
-									class="z-3"
-									alt="Husky {location.husky}, Drawer {location.drawer}"
-								/>
+								{#if location.husky === 0}
+									<img
+										width="540"
+										src="/big-husky.svg"
+										class="z-3"
+										alt="Husky {location.husky}, Drawer {location.drawer}"
+									/>
+								{:else}
+									<img
+										width="540"
+										src="/smol-husky.svg"
+										class="z-3"
+										alt="Husky {location.husky}, Drawer {location.drawer}"
+									/>
+								{/if}
 							{/if}
 						{:else if location.cabinet !== -1}
 							{#if location.drawer !== -1}
