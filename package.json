@@ -1,5 +1,5 @@
 {
-	"name": "valpo-vex-inventory",
+	"name": "voltage-v5-directory",
 	"version": "0.0.1",
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^4.0.0",
