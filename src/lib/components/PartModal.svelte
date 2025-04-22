@@ -149,24 +149,32 @@
 
 			{#if part.links}
 				<div
-					class="flex flex-row gap-x-1 gap-y-0"
+					class="mt-2 flex flex-row gap-x-1 gap-y-1"
 					style={!(part.locations[0].husky > -1 && part.locations[0].husky < 3)
 						? 'flex-direction: column; width: fit-content;'
 						: ''}
 				>
 					{#if part.links.robosource}
 						<button
-							class="mt-2 flex w-fit cursor-pointer flex-row items-center gap-2 rounded-lg bg-orange-500 px-2 py-1 text-black"
+							class="flex w-fit cursor-pointer flex-row items-center gap-2 rounded-lg bg-orange-500 px-2 py-1 text-black"
 							onclick={() => (window.location = part.links.robosource)}
 							>Order at <img width="180px" src="/robosource.png" /></button
 						>
 					{/if}
 					{#if part.links.vex}
 						<button
-							class="mt-2 flex w-fit cursor-pointer flex-row items-center gap-2 justify-self-end rounded-lg bg-white px-2 py-1 text-zinc-500"
+							class="flex w-fit cursor-pointer flex-row items-center gap-2 justify-self-end rounded-lg bg-white px-2 py-1 text-zinc-500"
 							onclick={() => (window.location = part.links.vex)}
 							>Order at <img width="64px" src="/vex.svg" /></button
 						>
+					{/if}
+					{#if part.links.api}
+						<button
+							class="flex w-fit cursor-pointer flex-row items-center gap-2 justify-self-end rounded-lg bg-white px-2 py-1 text-zinc-500"
+							onclick={() => (window.location = part.links.api)}
+						>
+							Implement at <img width="64px" src="/vex.svg" />
+						</button>
 					{/if}
 				</div>
 			{/if}

@@ -8,7 +8,8 @@ let parts: Array<Part> = [
 		image: 'Batteryv5.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4811.html'
+			vex: 'https://www.vexrobotics.com/276-4811.html',
+			api: 'https://api.vex.com/v5/home/cpp/Brain/Brain.Battery.html'
 		},
 		locations: [{ husky: 0, drawer: 2 }]
 	},
@@ -17,7 +18,8 @@ let parts: Array<Part> = [
 		image: 'Brain.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4810.html'
+			vex: 'https://www.vexrobotics.com/276-4810.html',
+			api: 'https://api.vex.com/v5/home/cpp/Brain/index.html'
 		},
 		locations: [{ cabinet: 0, drawer: 0 }]
 	},
@@ -35,7 +37,8 @@ let parts: Array<Part> = [
 		image: '/v5controller.svg',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4820.html'
+			vex: 'https://www.vexrobotics.com/276-4820.html',
+			api: 'https://api.vex.com/v5/home/cpp/Controller/index.html'
 		},
 		locations: [{ cabinet: 0, drawer: 2 }]
 	},
@@ -53,7 +56,8 @@ let parts: Array<Part> = [
 		image: '/sensor.svg',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4855.html'
+			vex: 'https://www.vexrobotics.com/276-4855.html',
+			api: 'https://api.vex.com/v5/home/cpp/Inertial.html'
 		},
 		locations: [{ cabinet: 0, drawer: 4 }]
 	},
@@ -62,7 +66,8 @@ let parts: Array<Part> = [
 		image: '/sensor.svg',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-7043.html'
+			vex: 'https://www.vexrobotics.com/276-7043.html',
+			api: 'https://api.vex.com/v5/home/cpp/Optical.html'
 		},
 		locations: [{ cabinet: 0, drawer: 5 }]
 	},
@@ -71,7 +76,8 @@ let parts: Array<Part> = [
 		image: 'Sensor.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-8659.html'
+			vex: 'https://www.vexrobotics.com/276-8659.html',
+			api: 'https://api.vex.com/v5/home/cpp/Vision/index.html'
 		},
 		locations: [{ cabinet: 0, drawer: 6 }]
 	},
@@ -90,7 +96,8 @@ let parts: Array<Part> = [
 		image: '/rotation.svg',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-6050.html'
+			vex: 'https://www.vexrobotics.com/276-6050.html',
+			api: 'https://api.vex.com/v5/home/cpp/Rotation.html'
 		},
 		locations: [{ cabinet: 0, drawer: 8 }]
 	},
@@ -99,7 +106,8 @@ let parts: Array<Part> = [
 		image: '/sensor.svg',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4852.html'
+			vex: 'https://www.vexrobotics.com/276-4852.html',
+			api: 'https://api.vex.com/v5/home/cpp/Distance.html'
 		},
 		locations: [{ cabinet: 0, drawer: 9 }]
 	},
@@ -108,7 +116,8 @@ let parts: Array<Part> = [
 		image: 'Sensor.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-7417.html'
+			vex: 'https://www.vexrobotics.com/276-7417.html',
+			api: 'https://api.vex.com/v5/home/cpp/PotentiometerV2.html'
 		},
 		locations: [{ cabinet: 0, drawer: 11 }]
 	},
@@ -118,7 +127,8 @@ let parts: Array<Part> = [
 		lengths: ['1ft', '2ft', '3ft'],
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/v5-smart-cables.html'
+			vex: 'https://www.vexrobotics.com/v5-smart-cables.html',
+			api: 'https://api.vex.com/v5/home/cpp/Enums.html#ports'
 		},
 		locations: [
 			{ cabinet: 0, drawer: 10 },
@@ -131,7 +141,8 @@ let parts: Array<Part> = [
 		image: 'Switch.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4858.html'
+			vex: 'https://www.vexrobotics.com/276-4858.html',
+			api: 'https://api.vex.com/v5/home/cpp/Bumper.html'
 		},
 		locations: [{ cabinet: 0, drawer: 14 }]
 	},
@@ -140,7 +151,8 @@ let parts: Array<Part> = [
 		image: 'Motor.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4842.html'
+			vex: 'https://www.vexrobotics.com/276-4842.html',
+			api: 'https://api.vex.com/v5/home/cpp/Motor.html'
 		},
 		locations: [{ cabinet: 0, drawer: 16 }]
 	},
@@ -149,7 +161,8 @@ let parts: Array<Part> = [
 		image: 'Motor.png',
 		category: 'electronics',
 		links: {
-			vex: 'https://www.vexrobotics.com/276-4840.html'
+			vex: 'https://www.vexrobotics.com/276-4840.html',
+			api: 'https://api.vex.com/v5/home/cpp/Motor.html'
 		},
 		locations: [{ cabinet: 0, drawer: 16 }]
 	},
@@ -743,7 +756,10 @@ let parts: Array<Part> = [
 		name: 'Solenoid Valves',
 		image: '/solenoid.svg',
 		category: 'pneumatics',
-		links: { vex: 'https://www.vexrobotics.com/spare-pneumatics.html' },
+		links: {
+			vex: 'https://www.vexrobotics.com/spare-pneumatics.html',
+			api: 'https://api.vex.com/v5/home/cpp/DigitalOut.html'
+		},
 		locations: [
 			{ husky: 0, drawer: 14 },
 			{ husky: 0, drawer: 18 }

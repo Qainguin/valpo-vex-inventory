@@ -4,7 +4,7 @@ export interface Part {
 	image?: string;
 	lengths?: Array<string>;
 	category: string;
-	links?: { robosource?: string; vex: string };
+	links?: { robosource?: string; vex: string; api?: string };
 	locations?: Array<Location>;
 }
 
