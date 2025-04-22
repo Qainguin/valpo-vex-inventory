@@ -71,20 +71,22 @@
 
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
 	<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
-	<div class="xs:text-2xs mb-2 flex flex-row gap-2 border-y border-green-700 py-2 not-sm:text-xs">
-		{#each categories as category, c}
-			{#if filter.category === category}
-				<button
-					class="cursor-pointer rounded-full border border-green-400 bg-green-400 px-3 py-1 text-black hover:border-green-500 hover:bg-green-500"
-					onclick={() => (filter.category = '')}>{capitalizeCamelCase(category)}</button
-				>
-			{:else}
-				<button
-					class="cursor-pointer rounded-full border border-green-400 px-3 py-1 transition-colors hover:border-green-900 hover:bg-green-900"
-					onclick={() => (filter.category = category)}>{capitalizeCamelCase(category)}</button
-				>
-			{/if}
-		{/each}
+	<div class="xs:text-2xs mb-2 flex flex-col gap-1 border-y border-green-700 py-2 not-sm:text-xs">
+		<div class="flex flex-row gap-2">
+			{#each categories as category, c}
+				{#if filter.category === category}
+					<button
+						class="cursor-pointer rounded-full border border-green-400 bg-green-400 px-3 py-1 text-black hover:border-green-500 hover:bg-green-500"
+						onclick={() => (filter.category = '')}>{capitalizeCamelCase(category)}</button
+					>
+				{:else}
+					<button
+						class="cursor-pointer rounded-full border border-green-400 px-3 py-1 transition-colors hover:border-green-900 hover:bg-green-900"
+						onclick={() => (filter.category = category)}>{capitalizeCamelCase(category)}</button
+					>
+				{/if}
+			{/each}
+		</div>
 	</div>
 </nav>
 

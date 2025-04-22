@@ -78,7 +78,10 @@
 			<h1>{part.name}</h1>
 
 			<h2 class="text-zinc-400">
-				{capitalizeCamelCase(part.category)}
+				{capitalizeCamelCase(part.category)} - {part.locations[0].husky > -1 &&
+				part.locations[0].husky < 3
+					? 'Husky ' + part.locations[0].husky
+					: 'Cabinet ' + part.locations[0].cabinet}
 			</h2>
 			{#if part.lengths}
 				<h3 class="text-sm text-zinc-400">
@@ -145,17 +148,22 @@
 			{/if}
 
 			{#if part.links}
-				<div class="flex w-full flex-row gap-2">
+				<div
+					class="flex flex-row gap-x-1 gap-y-0"
+					style={!(part.locations[0].husky > -1 && part.locations[0].husky < 3)
+						? 'flex-direction: column; width: fit-content;'
+						: ''}
+				>
 					{#if part.links.robosource}
 						<button
-							class="mt-2 flex cursor-pointer flex-row items-center gap-2 rounded-lg bg-orange-500 px-2 py-1 text-black"
+							class="mt-2 flex w-fit cursor-pointer flex-row items-center gap-2 rounded-lg bg-orange-500 px-2 py-1 text-black"
 							onclick={() => (window.location = part.links.robosource)}
 							>Order at <img width="180px" src="/robosource.png" /></button
 						>
 					{/if}
 					{#if part.links.vex}
 						<button
-							class="mt-2 flex cursor-pointer flex-row items-center gap-2 justify-self-end rounded-lg bg-white px-2 py-1 text-zinc-500"
+							class="mt-2 flex w-fit cursor-pointer flex-row items-center gap-2 justify-self-end rounded-lg bg-white px-2 py-1 text-zinc-500"
 							onclick={() => (window.location = part.links.vex)}
 							>Order at <img width="64px" src="/vex.svg" /></button
 						>
