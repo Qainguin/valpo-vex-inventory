@@ -14,4 +14,12 @@
 	bind:value={query}
 />
 
-<Fuzzy {query} data={parts} options={{ keys: ['name'] }} bind:formatted={searchedParts}></Fuzzy>
+<Fuzzy
+	{query}
+	data={parts}
+	options={{
+		keys: ['name'],
+		threshold: 0.3
+	}}
+	bind:formatted={searchedParts}
+></Fuzzy>
