@@ -3,6 +3,19 @@
 
 	let { part = $bindable() } = $props();
 
+	const ICONS =
+		'https://raw.githubusercontent.com/BreadSoup/Protobot-Rebuilt/1c67dc53e3ab3edfcfb878349bbb048cf4cf168e/Assets/Sprites/Packet%20Icons/';
+
+	function getPartImage() {
+		if (part?.image?.startsWith('/') || part?.image?.startsWith('https')) {
+			return part.image;
+		} else if (!part?.image) {
+			return '/unknown.svg';
+		} else {
+			return ICONS + part?.image;
+		}
+	}
+
 	function capitalizeCamelCase(str: string) {
 		if (!str) {
 			return '';
@@ -78,36 +91,47 @@
 {#if part}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div
-		class="fixed top-0 left-0 z-5 grid h-screen w-screen place-items-center bg-zinc-900/40 text-white backdrop-blur-xs"
+		class="fixed top-0 left-0 z-5 grid h-screen w-screen place-items-center bg-zinc-900/40 text-green-400 backdrop-blur-xs"
 	>
 		<div class="relative min-w-48 rounded-lg border border-zinc-800 bg-zinc-950 p-4">
 			<button class="absolute top-0 right-0 m-4 w-4 cursor-pointer" onclick={() => (part = null)}
 				><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
 					><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path
-						fill="#ffffff"
+						fill="#05df72"
 						d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
 					/></svg
 				></button
 			>
 
-			<h1>{part.name}</h1>
+			<div class="flex flex-row items-center gap-1">
+				<img
+					src={getPartImage()}
+					width="24"
+					class="h-8 w-8"
+					style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
+				/>
 
-			<h2 class="text-zinc-400">
-				{capitalizeCamelCase(part.category)}
-				{#if part.locations && part.locations[0]}
-					- {part.locations[0].husky > -1 && part.locations[0].husky < 3
-						? 'Husky ' + part.locations[0].husky
-						: 'Cabinet ' + part.locations[0].cabinet}
-				{/if}
-			</h2>
-			{#if part.lengths}
-				<h3 class="text-sm text-zinc-400">
-					Lengths:
-					{#each part.lengths as length, l}
-						{length + (l !== part.lengths.length - 1 ? ', ' : '')}
-					{/each}
-				</h3>
-			{/if}
+				<div class="flex flex-col">
+					<h1>{part.name}</h1>
+
+					<h2 class="text-green-600">
+						{capitalizeCamelCase(part.category)}
+						{#if part.locations && part.locations[0]}
+							- {part.locations[0].husky > -1 && part.locations[0].husky < 3
+								? 'Husky ' + part.locations[0].husky
+								: 'Cabinet ' + part.locations[0].cabinet}
+						{/if}
+					</h2>
+					{#if part.lengths}
+						<h3 class="text-sm text-zinc-600">
+							Lengths:
+							{#each part.lengths as length, l}
+								{length + (l !== part.lengths.length - 1 ? ', ' : '')}
+							{/each}
+						</h3>
+					{/if}
+				</div>
+			</div>
 
 			<div class="mb-1"></div>
 
@@ -138,6 +162,7 @@
 										width="540"
 										src="/big-husky.svg"
 										class="z-3"
+										style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
 										alt="Husky {location.husky}, Drawer {location.drawer}"
 									/>
 								{:else}
@@ -145,6 +170,7 @@
 										width="540"
 										src="/smol-husky.svg"
 										class="z-3"
+										style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
 										alt="Husky {location.husky}, Drawer {location.drawer}"
 									/>
 								{/if}
@@ -169,6 +195,7 @@
 								<img
 									width="280"
 									src="/cabinet.svg"
+									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
 									class="z-3"
 									alt="Cabinet {location.cabinet}, Drawer {location.drawer}"
 								/>

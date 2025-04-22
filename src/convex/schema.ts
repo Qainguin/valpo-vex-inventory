@@ -10,7 +10,7 @@ export default defineSchema({
 			v.object({
 				api: v.optional(v.string()),
 				robosource: v.optional(v.string()),
-				vex: v.string()
+				vex: v.optional(v.string())
 			})
 		),
 		locations: v.optional(
