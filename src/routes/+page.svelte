@@ -70,7 +70,7 @@
 </script>
 
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
-	<h1 class="border-green-700 pb-2 text-3xl">Valpo Voltage VEX Directory</h1>
+	<h1 class="border-green-700 pb-2 text-3xl">Valpo Voltage V5 Directory</h1>
 	<div class="xs:text-2xs mb-2 flex flex-row gap-2 border-y border-green-700 py-2 not-sm:text-xs">
 		{#each categories as category, c}
 			{#if filter.category === category}
