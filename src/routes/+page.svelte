@@ -103,6 +103,8 @@
 			{/each}
 		</div>
 	</div>
+
+	<Search bind:searchedParts {parts}></Search>
 </nav>
 
 {#if query.isLoading}
@@ -112,47 +114,53 @@
 {:else}
 	<main class="bg-zinc-950 p-4 pt-0 text-green-400">
 		<div class="flex flex-col gap-2">
-			{#if searchedParts.length > 0}
-				{#each searchedParts as item}
-					{#each item as line}
-						{#if !filter.category || filter.category === findPart(combineText(line))?.category}
+			{#key searchedParts}
+				{#if searchedParts.length > 0}
+					{#each searchedParts as item}
+						{#each item as line}
+							{#if !filter.category || filter.category === findPart(combineText(line))?.category}
+								<div class="flex flex-row gap-2">
+									{#if getPartImage(combineText(line))}
+										<img
+											class="aspect-square w-6"
+											width="24"
+											height="24"
+											src={getPartImage(combineText(line))}
+										/>
+									{/if}
+									<button
+										class="cursor-pointer hover:underline"
+										onclick={() => (selectedPart = findPart(combineText(line)))}
+										>{combineText(line)}</button
+									>
+								</div>
+							{/if}
+						{/each}
+					{/each}
+				{:else if parts}
+					{#each parts as part}
+						{#if !filter.category || part.category === filter.category}
 							<div class="flex flex-row gap-2">
-								{#if getPartImage(combineText(line))}
-									<img
-										class="aspect-square w-6"
-										width="24"
-										height="24"
-										src={getPartImage(combineText(line))}
-									/>
-								{/if}
-								<button
-									class="cursor-pointer hover:underline"
-									onclick={() => (selectedPart = findPart(combineText(line)))}
-									>{combineText(line)}</button
+								<img
+									class="aspect-square w-6"
+									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
+									height="24"
+									width="24"
+									src={getPartImage(part.name)}
+								/>
+								<button class="cursor-pointer hover:underline" onclick={() => (selectedPart = part)}
+									>{part.name}</button
 								>
 							</div>
 						{/if}
 					{/each}
-				{/each}
-			{:else if parts}
-				{#each parts as part}
-					{#if !filter.category || part.category === filter.category}
-						<div class="flex flex-row gap-2">
-							<img class="aspect-square w-6" height="24" width="24" src={getPartImage(part.name)} />
-							<button class="cursor-pointer hover:underline" onclick={() => (selectedPart = part)}
-								>{part.name}</button
-							>
-						</div>
-					{/if}
-				{/each}
-			{/if}
+				{/if}
+			{/key}
 		</div>
 	</main>
 
 	<PartModal bind:part={selectedPart}></PartModal>
 {/if}
-
-<Search bind:searchedParts {parts}></Search>
 
 <style>
 	:global(body) {
