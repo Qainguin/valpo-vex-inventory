@@ -104,6 +104,7 @@
 			>
 
 			<div class="flex flex-row items-center gap-2">
+				<!-- svelte-ignore a11y_missing_attribute -->
 				<img
 					src={getPartImage()}
 					width="24"
