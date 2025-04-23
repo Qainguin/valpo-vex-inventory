@@ -23,5 +23,7 @@ export default defineSchema({
 			)
 		),
 		name: v.string()
-	}).index('by_category', ['category'])
+	})
+		.index('by_category', ['category'])
+		.index('by_name', ['name'])
 });

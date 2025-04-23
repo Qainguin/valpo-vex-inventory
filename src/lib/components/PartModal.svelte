@@ -103,7 +103,7 @@
 				></button
 			>
 
-			<div class="flex flex-row items-center gap-1">
+			<div class="flex flex-row items-center gap-2">
 				<img
 					src={getPartImage()}
 					width="24"
