@@ -113,9 +113,9 @@
 				/>
 
 				<div class="flex flex-col">
-					<h1>{part.name}</h1>
+					<h1 class="text-green-400">{part.name}</h1>
 
-					<h2 class="text-green-600">
+					<h2 class="text-green-500">
 						{capitalizeCamelCase(part.category)}
 						{#if part.locations && part.locations[0]}
 							- {part.locations[0].husky > -1 && part.locations[0].husky < 3
@@ -131,6 +131,8 @@
 							{/each}
 						</h3>
 					{/if}
+
+					<h4 class="mb-2 text-green-600">{part.description}</h4>
 				</div>
 			</div>
 
@@ -208,7 +210,7 @@
 
 			{#if part.links}
 				<div
-					class="mt-2 flex flex-row gap-x-1 gap-y-1"
+					class="mt-3 flex flex-row gap-x-1 gap-y-1"
 					style={part.locations &&
 					part.locations[0] &&
 					!(part.locations[0].husky > -1 && part.locations[0].husky < 3)
