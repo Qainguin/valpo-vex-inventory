@@ -132,7 +132,14 @@
 						</h3>
 					{/if}
 
-					<h4 class="mb-2 text-green-600">{part.description}</h4>
+					<h4
+						class="mb-2 max-w-48 text-wrap text-green-600"
+						style={part.locations[0].husky > -1 && part.locations[0].husky < 3
+							? 'max-width: 100%;'
+							: ''}
+					>
+						{part.description}
+					</h4>
 				</div>
 			</div>
 
