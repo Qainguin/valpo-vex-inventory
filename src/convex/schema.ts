@@ -22,7 +22,8 @@ export default defineSchema({
 				})
 			)
 		),
-		name: v.string()
+		name: v.string(),
+		description: v.optional(v.string())
 	})
 		.index('by_category', ['category'])
 		.index('by_name', ['name'])
