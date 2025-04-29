@@ -9,7 +9,7 @@
 </script>
 
 <input
-	class="ml-auto h-fit rounded-lg border border-green-800 bg-transparent px-2 py-1 text-green-400 not-sm:w-full hover:border-green-700 focus:border-green-600 focus:ring-0 focus:outline-none"
+	class="h-fit rounded-lg border border-green-800 bg-transparent px-2 py-1 text-green-400 not-sm:w-full not-sm:text-center hover:border-green-700 focus:border-green-600 focus:ring-0 focus:outline-none"
 	placeholder="Search"
 	bind:value={query}
 />

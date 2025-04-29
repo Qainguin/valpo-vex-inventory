@@ -4,6 +4,7 @@ import { v } from 'convex/values';
 export default defineSchema({
 	parts: defineTable({
 		category: v.string(),
+		description: v.optional(v.string()),
 		image: v.optional(v.string()),
 		lengths: v.optional(v.array(v.string())),
 		links: v.optional(
@@ -22,9 +23,11 @@ export default defineSchema({
 				})
 			)
 		),
-		name: v.string(),
-		description: v.optional(v.string())
+		name: v.string()
+	}),
+	requests: defineTable({
+		email: v.string(),
+		name: v.object({ first: v.string(), last: v.string() }),
+		reason: v.string()
 	})
-		.index('by_category', ['category'])
-		.index('by_name', ['name'])
 });

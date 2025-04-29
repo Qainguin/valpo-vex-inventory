@@ -7,6 +7,7 @@
 
 	import { useQuery } from 'convex-svelte';
 	import { api } from '../convex/_generated/api.js';
+	import TakeHomeModal from '$lib/components/TakeHomeModal.svelte';
 
 	const query = useQuery(api.parts.get, {});
 
@@ -30,6 +31,8 @@
 	]);
 
 	let selectedPart: Part | null | undefined = $state(null);
+
+	let taking: boolean = $state(false);
 
 	function getAllCategories(partsToSearch: Array<Part> | undefined) {
 		if (!partsToSearch) return [];
@@ -80,6 +83,7 @@
 	}
 
 	$effect(() => {
+		if (!query.data) return;
 		parts = query.data;
 	});
 </script>
@@ -87,6 +91,10 @@
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
 	<div class="mb-2 flex flex-row items-center gap-2 not-sm:flex-col">
 		<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
+		<button
+			class="ml-auto min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+			onclick={() => (taking = true)}>Take Home</button
+		>
 		<Search bind:searchedParts {parts}></Search>
 	</div>
 
@@ -101,7 +109,10 @@
 				{:else}
 					<button
 						class="cursor-pointer rounded-full border border-green-400 px-3 py-1 transition-colors hover:border-green-900 hover:bg-green-900"
-						onclick={() => (filter.category = category)}>{capitalizeCamelCase(category)}</button
+						onclick={() => (filter.category = category)}
+						>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
+								category
+							)}{:else}Tools{/if}</button
 					>
 				{/if}
 			{/each}
@@ -163,6 +174,10 @@
 	</main>
 
 	<PartModal bind:part={selectedPart}></PartModal>
+
+	{#if taking}
+		<TakeHomeModal bind:taking></TakeHomeModal>
+	{/if}
 {/if}
 
 <style>

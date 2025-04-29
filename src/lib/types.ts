@@ -1,15 +1,17 @@
-// place files you want to import through the `$lib` alias in this folder.
 export interface Part {
-	name: string;
-	image?: string;
-	lengths?: Array<string>;
 	category: string;
-	links?: { robosource?: string; vex: string; api?: string };
-	locations?: Array<Location>;
-}
-
-export interface Location {
-	cabinet?: number;
-	husky?: number;
-	drawer?: number;
+	image?: string;
+	lengths?: string[];
+	links?: {
+		api?: string;
+		robosource?: string;
+		vex?: string;
+	};
+	locations?: {
+		cabinet?: number;
+		drawer: number;
+		husky?: number;
+	}[];
+	name: string;
+	description?: string;
 }
