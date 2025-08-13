@@ -104,7 +104,9 @@
 				{#if filter.category === category}
 					<button
 						class="cursor-pointer rounded-full border border-green-400 bg-green-400 px-3 py-1 text-black hover:border-green-500 hover:bg-green-500"
-						onclick={() => (filter.category = '')}>{capitalizeCamelCase(category)}</button
+						onclick={() => (filter.category = '')}>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
+								category
+							)}{:else}Tools{/if}</button
 					>
 				{:else}
 					<button
