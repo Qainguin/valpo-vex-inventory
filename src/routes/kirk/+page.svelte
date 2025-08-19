@@ -4,11 +4,14 @@
 	import Request from '$lib/components/Request.svelte';
 	import { useQuery } from 'convex-svelte';
 	import { api } from '../../convex/_generated/api';
+	import { useMutation } from 'convex/react';
+	import type { Id } from '../../convex/_generated/dataModel';
 
 	// Do not destructure context to avoid losing reactivity
 	const ctx = useClerkContext();
 
 	const clerkAuth: any = $derived(ctx.auth);
+	const handleRequest = useMutation(api.requests.handleRequest);
 
 	let query = useQuery(api.requests.get, {});
 </script>
@@ -31,6 +34,8 @@
 
 							<button
 								class="aspect-square cursor-pointer rounded-lg border border-green-400 fill-green-400 p-2 hover:bg-green-400 hover:fill-black active:bg-green-500"
+								onclick={() =>
+									handleRequest({ accepted: true, requestId: item._id as Id<'requests'> })}
 							>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 640 640">
 									<!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -41,6 +46,8 @@
 							</button>
 							<button
 								class="aspect-square cursor-pointer rounded-lg border border-red-400 fill-red-400 p-2 hover:bg-red-400 hover:fill-black active:bg-red-500"
+								onclick={() =>
+									handleRequest({ accepted: false, requestId: item._id as Id<'requests'> })}
 							>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 640 640">
 									<!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->

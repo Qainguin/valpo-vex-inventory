@@ -28,6 +28,7 @@ export default defineSchema({
 	requests: defineTable({
 		email: v.string(),
 		name: v.object({ first: v.string(), last: v.string() }),
-		reason: v.string()
+		reason: v.string(),
+		accepted: v.boolean()
 	})
 });

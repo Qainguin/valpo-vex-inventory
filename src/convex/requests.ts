@@ -13,9 +13,20 @@ export const createRequest = mutation({
 		const requestId = await ctx.db.insert('requests', {
 			name: { first: args.firstName, last: args.lastName },
 			reason: args.reason,
-			email: args.email
+			email: args.email,
+			accepted: false
 		});
 		return requestId;
+	}
+});
+
+export const handleRequest = mutation({
+	args: {
+		accepted: v.boolean(),
+		requestId: v.id('requests')
+	},
+	handler: async (ctx, args) => {
+		await ctx.db.patch(args.requestId, { accepted });
 	}
 });
 
