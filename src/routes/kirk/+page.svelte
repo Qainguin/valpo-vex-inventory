@@ -30,7 +30,7 @@
 							<p>{item.name.first} {item.name.last} - {item.reason}</p>
 
 							<button
-								class="aspect-square cursor-pointer rounded-lg border border-green-400 p-2 hover:bg-green-400 active:bg-green-500"
+								class="aspect-square cursor-pointer rounded-lg border border-green-400 fill-green-400 p-2 hover:bg-green-400 hover:fill-black active:bg-green-500"
 							>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 640 640">
 									<!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -40,7 +40,7 @@
 								</svg>
 							</button>
 							<button
-								class="aspect-square cursor-pointer rounded-lg border border-red-400 p-2 hover:bg-red-400 active:bg-red-500"
+								class="aspect-square cursor-pointer rounded-lg border border-red-400 fill-red-400 p-2 hover:bg-red-400 hover:fill-black active:bg-red-500"
 							>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" viewBox="0 0 640 640">
 									<!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
