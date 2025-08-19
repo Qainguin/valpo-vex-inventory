@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { SignedIn } from 'svelte-clerk';
 	import { useClerkContext } from 'svelte-clerk/client';
-	import Request from '$lib/components/Request.svelte';
 	import { useQuery } from 'convex-svelte';
 	import { api } from '../../convex/_generated/api';
 	import { useMutation } from 'convex/react';

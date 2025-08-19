@@ -26,7 +26,7 @@ export const handleRequest = mutation({
 		requestId: v.id('requests')
 	},
 	handler: async (ctx, args) => {
-		await ctx.db.patch(args.requestId, { accepted });
+		await ctx.db.patch(args.requestId, { accepted: args.accepted });
 	}
 });
 
