@@ -14,7 +14,7 @@ export const createRequest = mutation({
 			name: { first: args.firstName, last: args.lastName },
 			reason: args.reason,
 			email: args.email,
-			accepted: false
+			state: ''
 		});
 		return requestId;
 	}
@@ -22,11 +22,11 @@ export const createRequest = mutation({
 
 export const handleRequest = mutation({
 	args: {
-		accepted: v.boolean(),
+		state: v.string(),
 		requestId: v.id('requests')
 	},
 	handler: async (ctx, args) => {
-		await ctx.db.patch(args.requestId, { accepted: args.accepted });
+		await ctx.db.patch(args.requestId, { state: args.state });
 	}
 });
 
