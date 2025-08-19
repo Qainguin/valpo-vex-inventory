@@ -1,5 +1,5 @@
 // convex/requests.ts
-import { mutation } from './_generated/server';
+import { mutation, query } from './_generated/server';
 import { v } from 'convex/values';
 
 export const createRequest = mutation({
@@ -13,8 +13,27 @@ export const createRequest = mutation({
 		const requestId = await ctx.db.insert('requests', {
 			name: { first: args.firstName, last: args.lastName },
 			reason: args.reason,
-			email: args.email
+			email: args.email,
+			state: ''
 		});
 		return requestId;
+	}
+});
+
+export const handleRequest = mutation({
+	args: {
+		state: v.string(),
+		requestId: v.id('requests')
+	},
+	handler: async (ctx, args) => {
+		await ctx.db.patch(args.requestId, { state: args.state });
+	}
+});
+
+export const get = query({
+	args: {},
+	handler: async (ctx) => {
+		const tasks = await ctx.db.query('requests').collect();
+		return tasks;
 	}
 });

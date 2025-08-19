@@ -8,6 +8,14 @@
 	import { useQuery } from 'convex-svelte';
 	import { api } from '../convex/_generated/api.js';
 	import TakeHomeModal from '$lib/components/TakeHomeModal.svelte';
+	import { goto } from '$app/navigation';
+	import { SignedIn, SignedOut } from 'svelte-clerk';
+	import { useClerkContext } from 'svelte-clerk/client';
+
+	// Do not destructure context to avoid losing reactivity
+	const ctx = useClerkContext();
+
+	const clerkAuth: any = $derived(ctx.auth);
 
 	const query = useQuery(api.parts.get, {});
 
@@ -86,16 +94,47 @@
 		if (!query.data) return;
 		parts = query.data;
 	});
+
+	$effect(() => {
+		$inspect(clerkAuth);
+		if (clerkAuth.userId) {
+			if (
+				clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' ||
+				clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'
+			) {
+				console.log('OMG ITS KIRK');
+			}
+		}
+	});
 </script>
 
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
 	<div class="mb-2 flex flex-row items-center gap-2 not-sm:flex-col">
 		<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
-		<button
-			class="ml-auto min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
-			onclick={() => (taking = true)}>Take Home</button
-		>
-		<Search bind:searchedParts {parts}></Search>
+		<div class="ml-auto flex flex-row gap-2">
+			<SignedOut>
+				<button
+					class="min-w-20 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+					onclick={() => {
+						goto('/login');
+					}}>Log In</button
+				>
+			</SignedOut>
+			<SignedIn>
+				{#if clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' || clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'}
+					<button
+						class="min-w-16 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+						onclick={() => goto('/kirk')}>KIRK</button
+					>
+				{/if}
+				<button
+					class="min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+					onclick={() => (taking = true)}>Take Home</button
+				>
+			</SignedIn>
+
+			<Search bind:searchedParts {parts}></Search>
+		</div>
 	</div>
 
 	<div class="mb-2 flex flex-col gap-1 border-y border-green-700 py-2 not-sm:text-xs">
@@ -104,7 +143,8 @@
 				{#if filter.category === category}
 					<button
 						class="cursor-pointer rounded-full border border-green-400 bg-green-400 px-3 py-1 text-black hover:border-green-500 hover:bg-green-500"
-						onclick={() => (filter.category = '')}>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
+						onclick={() => (filter.category = '')}
+						>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
 								category
 							)}{:else}Tools{/if}</button
 					>

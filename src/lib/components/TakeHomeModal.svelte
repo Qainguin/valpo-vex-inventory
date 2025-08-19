@@ -1,26 +1,27 @@
 <script>
 	import { useConvexClient } from 'convex-svelte';
 	import { api } from '../../convex/_generated/api';
-
+	import { useClerkContext } from 'svelte-clerk';
 	const client = useConvexClient();
+
+	const ctx = useClerkContext();
+	const clerkAuth = $derived(ctx.auth);
 
 	let { taking = $bindable() } = $props();
 
-	let firstName = $state('');
-	let lastName = $state('');
 	let reason = $state('');
-	let email = $state('');
 
 	async function sendTakeHome() {
-		if (firstName && lastName && reason && email) {
+		if (reason) {
 			taking = false;
 			// Send the data to the server or handle it as needed
 			// @ts-ignore
-			await client.mutation(api.requests.createRequest, {
-				firstName,
-				lastName,
+			const user = $state.snapshot(clerkAuth.user);
+			client.mutation(api.requests.createRequest, {
+				email: user.primaryEmailAddress.emailAddress,
 				reason,
-				email
+				firstName: user.firstName,
+				lastName: user.lastName
 			});
 		} else {
 			alert('Please fill in all fields.');
@@ -43,39 +44,12 @@
 
 		<h1 class="pb-1">Take Home</h1>
 
-		<label for="firstName" class="text-md py-1">First Name</label>
-		<input
-			bind:value={firstName}
-			id="firstName"
-			type="name"
-			placeholder="John"
-			class="rounded-md border border-green-800 bg-zinc-950 px-2 py-1 text-sm hover:border-green-700 focus:border-green-600 focus:outline-none"
-		/>
-
-		<label for="lastName" class="text-md py-1">Last Name</label>
-		<input
-			bind:value={lastName}
-			id="lastName"
-			type="name"
-			placeholder="Winland"
-			class="rounded-md border border-green-800 bg-zinc-950 px-2 py-1 text-sm hover:border-green-700 focus:border-green-600 focus:outline-none"
-		/>
-
 		<label for="reason" class="text-md py-1">Reason</label>
 		<input
 			bind:value={reason}
 			id="reason"
 			type="name"
 			placeholder="I need to take the robot home to fix..."
-			class="rounded-md border border-green-800 bg-zinc-950 px-2 py-1 text-sm hover:border-green-700 focus:border-green-600 focus:outline-none"
-		/>
-
-		<label for="email" class="text-md py-1">Email</label>
-		<input
-			bind:value={email}
-			id="email"
-			type="name"
-			placeholder="id@valpo.k12.in.us"
 			class="rounded-md border border-green-800 bg-zinc-950 px-2 py-1 text-sm hover:border-green-700 focus:border-green-600 focus:outline-none"
 		/>
 
