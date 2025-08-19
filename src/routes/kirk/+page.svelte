@@ -11,7 +11,6 @@
 	const clerkAuth: any = $derived(ctx.auth);
 
 	let query = useQuery(api.requests.get, {});
-	let requests = $state(query.data);
 </script>
 
 <main class="h-screen p-4 text-green-400">
@@ -25,8 +24,8 @@
 			</h1>
 
 			<div class="mt-2 flex flex-col gap-2">
-				{#if requests}
-					{#each requests as item}
+				{#if query.data}
+					{#each query.data as item}
 						<div>{item.name.first} {item.name.last} - {item.reason}</div>
 					{/each}
 				{/if}
