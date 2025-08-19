@@ -1,7 +1,6 @@
 <script>
 	import { useConvexClient } from 'convex-svelte';
 	import { api } from '../../convex/_generated/api';
-
 	const client = useConvexClient();
 
 	let { taking = $bindable() } = $props();
@@ -16,11 +15,12 @@
 			taking = false;
 			// Send the data to the server or handle it as needed
 			// @ts-ignore
-			await client.mutation(api.requests.createRequest, {
-				firstName,
-				lastName,
-				reason,
-				email
+			const response = await fetch('/send', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: `{ "reason": "${reason}", "firstName": "${firstName}", "lastName": "${lastName}", "email": "${email}" }`
 			});
 		} else {
 			alert('Please fill in all fields.');
