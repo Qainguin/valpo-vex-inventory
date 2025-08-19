@@ -127,11 +127,11 @@
 						onclick={() => goto('/kirk')}>KIRK</button
 					>
 				{/if}
+				<button
+					class="min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+					onclick={() => (taking = true)}>Take Home</button
+				>
 			</SignedIn>
-			<button
-				class="min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
-				onclick={() => (taking = true)}>Take Home</button
-			>
 
 			<Search bind:searchedParts {parts}></Search>
 		</div>
