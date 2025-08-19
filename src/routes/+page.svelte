@@ -111,7 +111,7 @@
 <nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
 	<div class="mb-2 flex flex-row items-center gap-2 not-sm:flex-col">
 		<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
-		<div class="ml-auto flex flex-row gap-2">
+		<div class="ml-auto flex flex-row gap-2 not-sm:w-full not-sm:flex-col">
 			<SignedOut>
 				<button
 					class="min-w-20 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
