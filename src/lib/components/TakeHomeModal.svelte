@@ -31,7 +31,7 @@
 
 <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
 	<div
-		class="relative flex w-full max-w-md flex-col rounded-lg border border-zinc-800 bg-zinc-950 p-4 text-green-400"
+		class="text-primary-accent relative flex w-full max-w-md flex-col rounded-lg border border-zinc-800 bg-zinc-950 p-4"
 	>
 		<button class="absolute top-0 right-0 m-4 w-4 cursor-pointer" onclick={() => (taking = false)}
 			><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
@@ -50,7 +50,7 @@
 			id="reason"
 			type="name"
 			placeholder="I need to take the robot home to fix..."
-			class="rounded-md border border-green-800 bg-zinc-950 px-2 py-1 text-sm hover:border-green-700 focus:border-green-600 focus:outline-none"
+			class="hover:border-hover-accent focus:border-focus-accent border-focus-accent-800 rounded-md border bg-zinc-950 px-2 py-1 text-sm focus:outline-none"
 		/>
 
 		<button

@@ -13,3 +13,11 @@
 * {
 	font-family: 'JetBrains Mono', monospace;
 }
+
+@theme {
+	--color-primary-accent: var(--color-green-400);
+	--color-secondary-accent: var(--color-green-700);
+
+	--color-hover-accent: var(--color-green-500);
+	--color-focus-accent: var(--color-green-600);
+}

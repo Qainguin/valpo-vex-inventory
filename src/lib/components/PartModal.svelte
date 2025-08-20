@@ -91,7 +91,7 @@
 {#if part}
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<div
-		class="fixed top-0 left-0 z-5 grid h-screen w-screen place-items-center bg-zinc-900/40 text-green-400 backdrop-blur-xs"
+		class="text-primary-accent fixed top-0 left-0 z-5 grid h-screen w-screen place-items-center bg-zinc-900/40 backdrop-blur-xs"
 	>
 		<div class="relative min-w-48 rounded-lg border border-zinc-800 bg-zinc-950 p-4">
 			<button class="absolute top-0 right-0 m-4 w-4 cursor-pointer" onclick={() => (part = null)}
@@ -113,9 +113,9 @@
 				/>
 
 				<div class="flex flex-col">
-					<h1 class="text-green-400">{part.name}</h1>
+					<h1 class="text-primary-accent">{part.name}</h1>
 
-					<h2 class="text-green-500">
+					<h2 class="text-hover-accent">
 						{capitalizeCamelCase(part.category)}
 						{#if part.locations && part.locations[0]}
 							- {part.locations[0].husky > -1 && part.locations[0].husky < 3
@@ -133,7 +133,7 @@
 					{/if}
 
 					<h4
-						class="mb-2 max-w-48 text-wrap text-green-600"
+						class="text-focus-accent mb-2 max-w-48 text-wrap"
 						style={part.locations[0].husky > -1 && part.locations[0].husky < 3
 							? 'max-width: 100%;'
 							: ''}
@@ -157,7 +157,7 @@
 					{#each part.locations as location, l}
 						{#if !location.cabinet && location.husky > -1}
 							<div
-								class="pulse absolute top-[9.5px] left-[10px] z-1 h-[13px] w-[105px] bg-green-400 opacity-50"
+								class="pulse bg-primary-accent absolute top-[9.5px] left-[10px] z-1 h-[13px] w-[105px] opacity-50"
 								style="width: {getHuskyDrawerBounds(location.drawer, location.husky)
 									?.width}; height: {getHuskyDrawerBounds(location.drawer, location.husky)
 									?.height};  transform: translate({getHuskyDrawerBounds(
@@ -188,7 +188,7 @@
 						{:else if location.cabinet !== -1}
 							{#if location.drawer !== -1}
 								<div
-									class="pulse absolute top-[135px] left-[15px] z-1 h-[17.5px] w-[80px] bg-green-400 opacity-50"
+									class="pulse bg-primary-accent absolute top-[135px] left-[15px] z-1 h-[17.5px] w-[80px] opacity-50"
 									style="transform: translate({87 * (location.drawer % 3)}px, {Math.floor(
 										location.drawer / 3
 									) * 27.5}px); {location.drawer % 3 === 1
@@ -197,7 +197,7 @@
 								></div>
 							{:else}
 								<div
-									class="pulse absolute top-[14px] left-[15px] z-1 h-[111.5px] w-[250px] bg-green-400 opacity-50"
+									class="pulse bg-primary-accent absolute top-[14px] left-[15px] z-1 h-[111.5px] w-[250px] opacity-50"
 								></div>
 							{/if}
 

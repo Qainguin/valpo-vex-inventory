@@ -31,9 +31,19 @@ export const handleRequest = mutation({
 });
 
 export const get = query({
-	args: {},
-	handler: async (ctx) => {
-		const tasks = await ctx.db.query('requests').collect();
-		return tasks;
+	args: {
+		email: v.optional(v.string())
+	},
+	handler: async (ctx, args) => {
+		if (args.email) {
+			const tasks = await ctx.db
+				.query('requests')
+				.filter((q) => q.eq(q.field('email'), args.email))
+				.collect();
+			return tasks;
+		} else {
+			const tasks = await ctx.db.query('requests').collect();
+			return tasks;
+		}
 	}
 });

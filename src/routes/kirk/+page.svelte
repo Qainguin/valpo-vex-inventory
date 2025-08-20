@@ -16,14 +16,14 @@
 	let query = useQuery(api.requests.get, {});
 </script>
 
-<main class="h-screen p-4 text-green-400">
+<main class="text-primary-accent h-screen p-4">
 	<SignedIn>
 		{#if clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' || clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'}
-			<div class="flex w-full flex-row border-b border-green-700 pb-2">
-				<h1 class="text-3xl">Requests</h1>
+			<div class="border-secondary-accent flex w-full flex-row border-b pb-2">
+				<h1 class="text-3xl">Kirquests</h1>
 				<button class="ml-auto cursor-pointer" onclick={() => goto('/')}>
 					<svg
-						class="fill-green-400"
+						class="fill-primary-accent"
 						width="32"
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 640 640"
@@ -42,7 +42,7 @@
 								<p>{item.name.first} {item.name.last} - {item.reason}</p>
 
 								<button
-									class="aspect-square cursor-pointer rounded-lg border border-green-400 fill-green-400 p-2 hover:bg-green-400 hover:fill-black active:bg-green-500"
+									class="border-primary-accent fill-primary-accent hover:bg-primary-accent active:bg-hover-accent aspect-square cursor-pointer rounded-lg border p-2 hover:fill-black"
 									onclick={() =>
 										client.mutation(api.requests.handleRequest, {
 											state: 'accepted',

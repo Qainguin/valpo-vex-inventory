@@ -108,13 +108,13 @@
 	});
 </script>
 
-<nav class="w-full bg-zinc-950 p-4 pb-0 text-green-400">
+<nav class="text-primary-accent w-full bg-zinc-950 p-4 pb-0">
 	<div class="mb-2 flex flex-row items-center gap-2 not-sm:flex-col">
-		<h1 class="border-green-700 pb-2 text-3xl">Voltage V5 Directory</h1>
+		<h1 class="border-secondary-accent pb-2 text-3xl">Voltage V5 Directory</h1>
 		<div class="ml-auto flex flex-row gap-2 not-sm:w-full not-sm:flex-col">
 			<SignedOut>
 				<button
-					class="min-w-20 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+					class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-20 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
 					onclick={() => {
 						goto('/login');
 					}}>Log In</button
@@ -123,12 +123,17 @@
 			<SignedIn>
 				{#if clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' || clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'}
 					<button
-						class="min-w-16 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
 						onclick={() => goto('/kirk')}>KIRK</button
+					>
+				{:else}
+					<button
+						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
+						onclick={() => goto('/requests')}>Requests</button
 					>
 				{/if}
 				<button
-					class="min-w-26.5 cursor-pointer rounded-lg border border-green-800 px-2 py-1 not-sm:w-full not-sm:text-lg hover:border-green-700 active:border-green-600"
+					class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
 					onclick={() => (taking = true)}>Take Home</button
 				>
 			</SignedIn>
@@ -137,12 +142,12 @@
 		</div>
 	</div>
 
-	<div class="mb-2 flex flex-col gap-1 border-y border-green-700 py-2 not-sm:text-xs">
+	<div class="border-secondary-accent mb-2 flex flex-col gap-1 border-y py-2 not-sm:text-xs">
 		<div class="m-1 flex flex-col gap-2 not-sm:text-lg sm:flex-row">
 			{#each categories as category, c}
 				{#if filter.category === category}
 					<button
-						class="cursor-pointer rounded-full border border-green-400 bg-green-400 px-3 py-1 text-black hover:border-green-500 hover:bg-green-500"
+						class="border-primary-accent bg-primary-accent hover:border-hover-accent cursor-pointer rounded-full border px-3 py-1 text-black"
 						onclick={() => (filter.category = '')}
 						>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
 								category
@@ -150,7 +155,7 @@
 					>
 				{:else}
 					<button
-						class="cursor-pointer rounded-full border border-green-400 px-3 py-1 transition-colors hover:border-green-900 hover:bg-green-900"
+						class="border-primary-accent hover:border-hover-accent cursor-pointer rounded-full border px-3 py-1 transition-colors"
 						onclick={() => (filter.category = category)}
 						>{#if category !== 'toolsAndAccessories'}{capitalizeCamelCase(
 								category
@@ -167,7 +172,7 @@
 {:else if query.error}
 	failed to load: {query.error.toString()}
 {:else}
-	<main class="bg-zinc-950 p-4 pt-0 text-green-400">
+	<main class="text-primary-accent bg-zinc-950 p-4 pt-0">
 		<div class="flex flex-col gap-2">
 			{#key searchedParts}
 				{#if searchedParts.length > 0}
@@ -199,7 +204,11 @@
 							<div class="flex flex-row gap-2">
 								<img
 									class="aspect-square w-6"
-									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
+									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate({getComputedStyle(
+										document.documentElement
+									).getPropertyValue('--color-primary-accent') === 'oklch(79.2% 0.209 151.711)'
+										? '60'
+										: '0'}deg);"
 									height="24"
 									width="24"
 									src={getPartImage(part.name)}
