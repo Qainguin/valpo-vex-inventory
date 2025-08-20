@@ -204,11 +204,7 @@
 							<div class="flex flex-row gap-2">
 								<img
 									class="aspect-square w-6"
-									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate({getComputedStyle(
-										document.documentElement
-									).getPropertyValue('--color-primary-accent') === 'oklch(79.2% 0.209 151.711)'
-										? '60'
-										: '0'}deg);"
+									style="filter: brightness(80%) sepia(100) saturate(75) hue-rotate(60deg);"
 									height="24"
 									width="24"
 									src={getPartImage(part.name)}
