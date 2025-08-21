@@ -132,14 +132,20 @@
 						</h3>
 					{/if}
 
-					<h4
-						class="text-focus-accent mb-2 max-w-48 text-wrap"
-						style={part.locations[0].husky > -1 && part.locations[0].husky < 3
-							? 'max-width: 100%;'
-							: ''}
-					>
-						{part.description}
-					</h4>
+					{#if part.locations[0].husky !== 2}
+						<h4
+							class="text-focus-accent mb-2 max-w-48 text-wrap"
+							style={part.locations[0].husky > -1 && part.locations[0].husky < 3
+								? 'max-width: 100%;'
+								: ''}
+						>
+							{part.description}
+						</h4>
+					{:else}
+						<h4 class="text-focus-accent mb-2 max-w-128 text-wrap">
+							{part.description}
+						</h4>
+					{/if}
 				</div>
 			</div>
 
