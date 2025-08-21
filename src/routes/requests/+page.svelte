@@ -30,7 +30,7 @@
 
 <main class="text-primary-accent h-screen p-4">
 	<SignedIn>
-		<div class="border-secondary-accent flex w-full flex-row gap-2 border-b pb-2">
+		<div class="border-secondary-accent flex w-full flex-row gap-2 border-b pb-2 not-sm:flex-col">
 			<h1 class="text-3xl">Requests</h1>
 
 			<button
