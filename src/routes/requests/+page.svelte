@@ -31,7 +31,7 @@
 <main class="text-primary-accent h-screen p-4">
 	<SignedIn>
 		<div class="border-secondary-accent flex w-full flex-row gap-2 border-b pb-2 not-sm:flex-col">
-			<h1 class="text-3xl">Requests</h1>
+			<h1 class="text-3xl not-sm:w-full not-sm text-center">Requests</h1>
 
 			<button
 				class="hover:border-hover-accent active:border-focus-accent border-primary-accent ml-auto min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
