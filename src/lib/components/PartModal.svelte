@@ -134,9 +134,9 @@
 
 					<h4
 						class="text-focus-accent mb-2 max-w-48 text-wrap"
-						style={part.locations[0].husky > -1 && part.locations[0].husky < 2
-							? 'max-width: 192px;'
-							: 'max-width: 512px;'}
+						style={part.locations[0].husky > -1 && part.locations[0].husky < 3
+							? 'max-width: 100%;'
+							: ''}
 					>
 						{part.description}
 					</h4>
