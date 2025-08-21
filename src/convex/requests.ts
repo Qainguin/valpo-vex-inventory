@@ -39,6 +39,7 @@ export const get = query({
 			const tasks = await ctx.db
 				.query('requests')
 				.filter((q) => q.eq(q.field('email'), args.email))
+				.order('desc')
 				.collect();
 			return tasks;
 		} else {

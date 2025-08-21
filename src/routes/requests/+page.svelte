@@ -6,6 +6,7 @@
 	import { api } from '../../convex/_generated/api';
 	import type { Id } from '../../convex/_generated/dataModel';
 	import { goto } from '$app/navigation';
+	import Request from '$lib/components/Request.svelte';
 
 	const client = useConvexClient();
 
@@ -47,18 +48,7 @@
 		<div class="mt-2 flex flex-col gap-2">
 			{#if query.data}
 				{#each query.data as item}
-					<div class="flex flex-row items-center gap-2">
-						<p>{item.name.first} {item.name.last} - {item.reason}</p>
-						{#if item.state === ''}
-							<div class="border-primary-accent aspect-square w-8 rounded-lg border"></div>
-						{:else if item.state === 'accepted'}
-							<div
-								class="border-primary-accent bg-primary-accent aspect-square w-8 rounded-lg border"
-							></div>
-						{:else if item.state === 'denied'}
-							<div class="aspect-square w-8 rounded-lg border border-red-400 bg-red-400"></div>
-						{/if}
-					</div>
+					<Request data={item}></Request>
 				{/each}
 			{/if}
 		</div>
