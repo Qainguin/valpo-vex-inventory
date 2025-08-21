@@ -22,7 +22,7 @@
 			<div class="border-secondary-accent flex w-full flex-row border-b pb-2 not-sm:flex-col">
 				<h1 class="text-3xl not-sm:w-full not-sm:text-center">Kirquests</h1>
 				<button
-					class="border-primary-accent hover:border-hover-accent ml-auto cursor-pointer rounded-lg border px-2 py-1"
+					class="border-primary-accent hover:border-hover-accent ml-auto cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full"
 					onclick={() => goto('/')}
 				>
 					Back
