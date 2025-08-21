@@ -131,11 +131,11 @@
 						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
 						onclick={() => goto('/requests')}>Requests</button
 					>
+					<button
+						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
+						onclick={() => (taking = true)}>Take Home</button
+					>
 				{/if}
-				<button
-					class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
-					onclick={() => (taking = true)}>Take Home</button
-				>
 			</SignedIn>
 
 			<Search bind:searchedParts {parts}></Search>
