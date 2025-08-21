@@ -128,12 +128,12 @@
 			<SignedIn>
 				{#if clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' || clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'}
 					<button
-						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-l max-h-8 h-8"
+						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full max-h-8 h-8"
 						onclick={() => goto('/kirk')}>Kirkquests</button
 					>
 				{:else}
 					<button
-						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg max-h-8 h-8"
+						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full max-h-8 h-8"
 						onclick={() => goto('/requests')}>Requests</button
 					>
 				{/if}
