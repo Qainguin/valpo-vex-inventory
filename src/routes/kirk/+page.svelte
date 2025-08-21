@@ -19,8 +19,8 @@
 <main class="text-primary-accent h-screen p-4">
 	<SignedIn>
 		{#if clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' || clerkAuth.user.primaryEmailAddress.emailAddress === '3226050@valpo.k12.in.us'}
-			<div class="border-secondary-accent flex w-full flex-row border-b pb-2">
-				<h1 class="text-3xl">Kirquests</h1>
+			<div class="border-secondary-accent flex w-full flex-row border-b pb-2 not-sm:flex-col">
+				<h1 class="text-3xl not-sm:w-full not-sm:text-center">Kirquests</h1>
 				<button
 					class="border-primary-accent hover:border-hover-accent ml-auto cursor-pointer rounded-lg border px-2 py-1"
 					onclick={() => goto('/')}
