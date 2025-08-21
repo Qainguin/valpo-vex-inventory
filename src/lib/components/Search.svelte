@@ -2,10 +2,6 @@
 	import Fuzzy from 'svelte-fuzzy';
 
 	let { query = $bindable(), parts, searchedParts = $bindable() } = $props();
-
-	$effect(() => {
-		$inspect(searchedParts);
-	});
 </script>
 
 <input

@@ -11,6 +11,7 @@
 	import { goto } from '$app/navigation';
 	import { SignedIn, SignedOut } from 'svelte-clerk';
 	import { useClerkContext } from 'svelte-clerk/client';
+	import { dark } from '@clerk/themes';
 
 	// Do not destructure context to avoid losing reactivity
 	const ctx = useClerkContext();
@@ -90,13 +91,17 @@
 		return fullLine;
 	}
 
+	function signOut(): void {
+		if (!ctx.clerk) return;
+		console.log(ctx.clerk.signOut());
+	}
+
 	$effect(() => {
 		if (!query.data) return;
 		parts = query.data;
 	});
 
 	$effect(() => {
-		$inspect(clerkAuth);
 		if (clerkAuth.userId) {
 			if (
 				clerkAuth.user.primaryEmailAddress.emailAddress === 'jkirk@valpo.k12.in.us' ||
@@ -131,11 +136,13 @@
 						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
 						onclick={() => goto('/requests')}>Requests</button
 					>
-					<button
-						class="hover:border-hover-accent active:border-focus-accent border-primary-accent min-w-16 cursor-pointer rounded-lg border px-2 py-1 not-sm:w-full not-sm:text-lg"
-						onclick={() => (taking = true)}>Take Home</button
-					>
 				{/if}
+				<button
+					class="border-primary-accent hover:border-hover-accent cursor-pointer rounded-lg border px-2 py-1"
+					onclick={signOut}
+				>
+					Sign Out
+				</button>
 			</SignedIn>
 
 			<Search bind:searchedParts {parts}></Search>
@@ -221,10 +228,6 @@
 	</main>
 
 	<PartModal bind:part={selectedPart}></PartModal>
-
-	{#if taking}
-		<TakeHomeModal bind:taking></TakeHomeModal>
-	{/if}
 {/if}
 
 <style>
